@@ -1,18 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { TimeAgoModule } from '../../shared/time-ago/time-ago.module'
 
-import { StudentsGridComponent } from './students-grid.component';
-import { StudentSideComponent } from './student-side.component';
-import { StudentsFilterComponent } from './students-filter.component'
+import { ArticleComponent } from './article.component'
 
 export const COMPONENTS = [
-  StudentsGridComponent,
-  StudentSideComponent,
-  StudentsFilterComponent
+  ArticleComponent
 ];
 
 @NgModule({
@@ -20,9 +14,7 @@ export const COMPONENTS = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule,
-    NgbModule,
-    MultiselectDropdownModule
+    TimeAgoModule
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS,

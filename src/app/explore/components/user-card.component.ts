@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-article',
-  templateUrl: './article.component.html'
+  selector: 'app-user-card',
+  templateUrl: './user-card.component.html'
 })
-export class ArticleComponent{}
+export class UserCardComponent{
+  @Input() userData: Object;
+}

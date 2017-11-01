@@ -1,79 +1,72 @@
-<div class="card">
-  <div class="card-block">
-    <div class="clearfix text-center m-t">
-      <div align="center">
-        <div>
-          <div class="thumb-xl">
-            <img src="../../../assets/images/a0.jpg" class="img-circle" alt="...">
-          </div>
+<article class="article">
+  <header>
+    <div class="article-logo">
+      <a href="#/{{postData.profile.username}}">
+        <img src="{{postData.profile.avatar}}"></a>
+    </div>
+    <div class="article-title">
+      <div>
+        <div class="name">
+          <a title="natgeo" href="#/{{postData.profile.username}}">{{postData.profile.username}}</a>
         </div>
-        <div class="h4 m-t m-b-xs" style="word-wrap: break-word">{{student.first_name + ' ' + student.last_name}}</div>
-        <div class="h6 m-t m-b-xs">Age:{{student.age}}</div>
+      </div>
+      <div class="location" *ngIf="false">
+        <a title="Seychelles" routerLink="/explore">Seychelles</a>
+      </div>
+    </div>
+  </header>
+  <div class="media-content">
+    <div>
+      <div class="container">
+        <div class="main-image">
+          <div class="holder">
+            <img src="{{postData.picture.url}}">
+          </div>
+          <div class="shift"></div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="hbox text-center b-t b-light">
-    <button href class="col padder-v text-muted btn-outline" (click)="isEdit = !isEdit" *ngIf="!isEdit">
-      <i class="fa fa-pencil-square-o block m-b-xs fa-2x" aria-hidden="true"></i>
-      Edit
-    </button>
-    <button href class="col padder-v text-muted b-b b-light btn-outline" (click)="isEdit = !isEdit" *ngIf="isEdit">
-      <i class="fa fa-floppy-o block m-b-xs fa-2x" aria-hidden="true"></i>
-      Save
-    </button>
-    <button href class="col padder-v text-muted btn-outline" (click)="isEdit = !isEdit" *ngIf="isEdit">
-      <i class="fa fa-times block m-b-xs fa-2x" aria-hidden="true"></i>
-      Cancel
-    </button>
-  </div>
-</div>
-<div>
-  <div class="list-group no-radius">
-    <div class="list-group-item align-items-start flex-column">
-      <small class="text-muted">First Name</small>
-      <span *ngIf="!isEdit">{{student.first_name}}</span>
-      <input type="text"  *ngIf="isEdit"  name="firstName" [(ngModel)]="student.first_name" class="transField"/>
-    </div>
-    <div class="list-group-item align-items-start flex-column">
-      <small class="text-muted">Last Name</small>
-      <span *ngIf="!isEdit">{{student.last_name}}</span>
-      <input type="text" *ngIf="isEdit" name="lastName" [(ngModel)]="student.last_name" class="transField"/>
-    </div>
-    <div class="list-group-item align-items-start flex-column">
-      <small class="text-muted">Location</small>
-      <span *ngIf="!isEdit">{{student.location_id}}</span>
-      <select *ngIf="isEdit" class="transField" [(ngModel)]="student.location_id" required>
-        <option *ngFor="let location of master.location" [ngValue]="location.id"> {{location.short_name}} </option>
-      </select>
-    </div>
-  </div>
-  <div class="list-group no-radius" *ngFor="let parent of student.parents; let i = index">
-    <div class="list-group-item align-items-start flex-column">
-      <small class="text-muted">Parent {{i+1}} name</small>
-      <span *ngIf="!isEdit">{{student.parents[i].name}}</span>
-      <input type="text" *ngIf="isEdit" name="parentName" [(ngModel)]="student.parents[i].name" class="transField"/>
-    </div>
-    <div class="list-group-item align-items-start flex-column">
-      <small class="text-muted">Parent {{i+1}} cell</small>
-      <span *ngIf="!isEdit">{{student.parents[i].cell_phone}}</span>
-      <input type="text" *ngIf="isEdit" name="cellNo" [(ngModel)]="student.parents[i].cell_phone" class="transField"/>
-    </div>
-    <div class="list-group-item align-items-start flex-column">
-      <small class="text-muted">Parent {{i+1}} email</small>
-      <span *ngIf="!isEdit">{{student.parents[i].email}}</span>
-      <input type="text" *ngIf="isEdit" name="email" [(ngModel)]="student.parents[i].email" class="transField"/>
-    </div>
-  </div>
-  <div class="list-group no-radius">
-    <div *ngFor="let subject of student.subjects">
-      <div class="list-group-item align-items-start flex-column">
-        <small class="text-muted">Subject</small>
-        {{subject.name}}
+  <div class="description">
+    <section class="controls">
+      <a class="like-btn" href="#" role="button" aria-disabled="false">
+        <span class="heart-open-icon">Like</span>
+      </a>
+      <a class="add-comment-btn" href="#" role="button">
+        <span class="comment-icon">Comment</span>
+      </a>
+    </section>
+    <section class="likes">
+      <div class="_3gwk6 _nt9ow">
+        <a class="_nzn1h" routerLink="/home">
+          <span>{{postData.likesCount}}</span> likes
+        </a>
       </div>
-      <div class="list-group-item align-items-start flex-column">
-        <small class="text-muted">Schedule</small><br>
-        {{subject.effective_date | date : "EEEE"}}<span *ngIf="subject.class_time">,{{subject.class_time}}</span>
-      </div>
+    </section>
+    <div class="comments">
+      <ul>
+        <li class="comment" *ngFor="let comment of postData.comments">
+          <a class="user-name" title="{{comment.user.name}}" href="#/{{comment.user.name}}">{{comment.user.username}}</a>
+            <span>
+              {{comment.text}}
+            </span>
+        </li>
+      </ul>
     </div>
+    <div class="time">
+      <a routerLink="/home">
+        <app-time-ago [timeStamp]="postData.timestamp * 1000"></app-time-ago>
+      </a>
+    </div>
+    <section class="add-comment">
+      <form>
+        <textarea aria-label="Add a comment…" placeholder="Add a comment…"></textarea>
+      </form>
+    </section>
   </div>
-</div>
+  <div class="more-options">
+    <button>
+      <span class="options-ellipsis-icon">More options</span>
+    </button>
+  </div>
+</article>

@@ -1,16 +1,24 @@
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
+import { AppComponent } from './core/app.component';
+import { ApiService } from './shared/services/api.service';
+
+import { routes } from './routes';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes, {useHash: true}),
+    CoreModule.forRoot(),
+    HttpModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  bootstrap: [AppComponent],
+  providers: [ApiService]
 })
-export class AppModule { }
+export class AppModule {
+}

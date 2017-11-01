@@ -1,23 +1,28 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { DashboardComponent } from './containers/dashboard.component';
+import { ComponentsModule } from './components';
+
+import { HomeComponent } from './home.component';
 
 @NgModule({
   imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ComponentsModule,
     RouterModule.forChild([
       {
         path: '',
-        component: DashboardComponent,
+        component: HomeComponent,
       },
     ]),
-    NgbModule
   ],
   declarations: [
-    DashboardComponent,
+    HomeComponent,
   ],
   providers: []
 })
-export class DashboardModule {
-}
+export class HomeModule {}

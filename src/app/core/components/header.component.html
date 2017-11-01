@@ -1,15 +1,18 @@
 <nav class="header" role="navigation">
-  <div class="header-container">
+  <div class="space-holder"></div>
+  <div class="header-container" [class.morphed]="navIsFixed">
     <div class="controls">
       <div class="brand">
         <div class="logo">
-          <a class="name" href="/">Instagram</a>
-          <a class="image" href="/">Instagram</a>
+          <a class="name" routerLink="/home">Instagram</a>
+          <a class="image" routerLink="/home">Instagram</a>
         </div>
       </div>
       <div class="search">
-        <input type="text" placeholder="Search" value="" (focus)="isFocused = true" (focusout)="isFocused = false">
-        <div class="input-overflow" *ngIf="!isFocused">
+        <input #searchInput type="text" placeholder="Search"  [(ngModel)]="searchQuery" (focusout)="clearSearch()">
+        <span class="search-icon" *ngIf="isFocused"></span>
+        <div class="search-clear" *ngIf="isFocused" (click)="clearSearch()"></div>
+        <div class="input-overflow" (click)="focusSearch(searchInput)" *ngIf="!isFocused">
           <div class="layer">
             <span class="search-icon"></span>
             <span class="placeholder">Search</span>

@@ -1,21 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { PostViewComponent } from './post-view.component'
+import { DateParsePipe } from './date-parse.pipe';
+import { TimeAgoComponent } from './time-ago.component'
 
 export const COMPONENTS = [
-  PostViewComponent
+  DateParsePipe,
+  TimeAgoComponent
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
+  imports:[CommonModule],
   declarations: COMPONENTS,
   exports: COMPONENTS,
 })
-export class PostViewModule {
+export class TimeAgoModule {
 }
