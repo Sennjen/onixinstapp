@@ -1,0 +1,36 @@
+<nav class="header" role="navigation">
+  <div class="header-container">
+    <div class="controls">
+      <div class="brand">
+        <div class="logo">
+          <a class="name" href="/">Instagram</a>
+          <a class="image" href="/">Instagram</a>
+        </div>
+      </div>
+      <div class="search">
+        <input type="text" placeholder="Search" value="" (focus)="isFocused = true" (focusout)="isFocused = false">
+        <div class="input-overflow" *ngIf="!isFocused">
+          <div class="layer">
+            <span class="search-icon"></span>
+            <span class="placeholder">Search</span>
+          </div>
+        </div>
+      </div>
+      <div class="links">
+        <div class="links-container">
+          <div class="link-item">
+            <a class="explore-link" routerLink="/explore/">Find People</a>
+          </div>
+          <div class="link-item">
+            <a href="#" class="activity-link">
+              <span>Activity Feed</span>
+            </a>
+          </div>
+          <div class="link-item">
+            <a class="profile-link" routerLink="/eugendzyubenko/">Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

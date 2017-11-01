@@ -1,0 +1,79 @@
+<div class="card">
+  <div class="card-block">
+    <div class="clearfix text-center m-t">
+      <div align="center">
+        <div>
+          <div class="thumb-xl">
+            <img src="../../../assets/images/a0.jpg" class="img-circle" alt="...">
+          </div>
+        </div>
+        <div class="h4 m-t m-b-xs" style="word-wrap: break-word">{{student.first_name + ' ' + student.last_name}}</div>
+        <div class="h6 m-t m-b-xs">Age:{{student.age}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="hbox text-center b-t b-light">
+    <button href class="col padder-v text-muted btn-outline" (click)="isEdit = !isEdit" *ngIf="!isEdit">
+      <i class="fa fa-pencil-square-o block m-b-xs fa-2x" aria-hidden="true"></i>
+      Edit
+    </button>
+    <button href class="col padder-v text-muted b-b b-light btn-outline" (click)="isEdit = !isEdit" *ngIf="isEdit">
+      <i class="fa fa-floppy-o block m-b-xs fa-2x" aria-hidden="true"></i>
+      Save
+    </button>
+    <button href class="col padder-v text-muted btn-outline" (click)="isEdit = !isEdit" *ngIf="isEdit">
+      <i class="fa fa-times block m-b-xs fa-2x" aria-hidden="true"></i>
+      Cancel
+    </button>
+  </div>
+</div>
+<div>
+  <div class="list-group no-radius">
+    <div class="list-group-item align-items-start flex-column">
+      <small class="text-muted">First Name</small>
+      <span *ngIf="!isEdit">{{student.first_name}}</span>
+      <input type="text"  *ngIf="isEdit"  name="firstName" [(ngModel)]="student.first_name" class="transField"/>
+    </div>
+    <div class="list-group-item align-items-start flex-column">
+      <small class="text-muted">Last Name</small>
+      <span *ngIf="!isEdit">{{student.last_name}}</span>
+      <input type="text" *ngIf="isEdit" name="lastName" [(ngModel)]="student.last_name" class="transField"/>
+    </div>
+    <div class="list-group-item align-items-start flex-column">
+      <small class="text-muted">Location</small>
+      <span *ngIf="!isEdit">{{student.location_id}}</span>
+      <select *ngIf="isEdit" class="transField" [(ngModel)]="student.location_id" required>
+        <option *ngFor="let location of master.location" [ngValue]="location.id"> {{location.short_name}} </option>
+      </select>
+    </div>
+  </div>
+  <div class="list-group no-radius" *ngFor="let parent of student.parents; let i = index">
+    <div class="list-group-item align-items-start flex-column">
+      <small class="text-muted">Parent {{i+1}} name</small>
+      <span *ngIf="!isEdit">{{student.parents[i].name}}</span>
+      <input type="text" *ngIf="isEdit" name="parentName" [(ngModel)]="student.parents[i].name" class="transField"/>
+    </div>
+    <div class="list-group-item align-items-start flex-column">
+      <small class="text-muted">Parent {{i+1}} cell</small>
+      <span *ngIf="!isEdit">{{student.parents[i].cell_phone}}</span>
+      <input type="text" *ngIf="isEdit" name="cellNo" [(ngModel)]="student.parents[i].cell_phone" class="transField"/>
+    </div>
+    <div class="list-group-item align-items-start flex-column">
+      <small class="text-muted">Parent {{i+1}} email</small>
+      <span *ngIf="!isEdit">{{student.parents[i].email}}</span>
+      <input type="text" *ngIf="isEdit" name="email" [(ngModel)]="student.parents[i].email" class="transField"/>
+    </div>
+  </div>
+  <div class="list-group no-radius">
+    <div *ngFor="let subject of student.subjects">
+      <div class="list-group-item align-items-start flex-column">
+        <small class="text-muted">Subject</small>
+        {{subject.name}}
+      </div>
+      <div class="list-group-item align-items-start flex-column">
+        <small class="text-muted">Schedule</small><br>
+        {{subject.effective_date | date : "EEEE"}}<span *ngIf="subject.class_time">,{{subject.class_time}}</span>
+      </div>
+    </div>
+  </div>
+</div>
