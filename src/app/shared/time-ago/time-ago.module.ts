@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DateParsePipe } from './date-parse.pipe';
+import { SharedPipesModule } from '../pipes/shared-pipes.module'
+
 import { TimeAgoComponent } from './time-ago.component'
 
-export const COMPONENTS = [
-  DateParsePipe,
-  TimeAgoComponent
-];
 
 @NgModule({
-  imports:[CommonModule],
-  declarations: COMPONENTS,
-  exports: COMPONENTS,
+  imports:[
+    CommonModule,
+    SharedPipesModule
+  ],
+  declarations: [TimeAgoComponent],
+  exports: [TimeAgoComponent],
 })
 export class TimeAgoModule {
 }
